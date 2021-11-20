@@ -399,10 +399,11 @@
         {
             var builder = new StringBuilder();
 
-            foreach (var item in parameters)
+            // Sort the parameters alphabetically to avoid http redirection.
+            foreach (var item in parameters.OrderBy(x => x.Key))
             {
                 builder.Append(builder.Length == 0 ? "?" : "&");
-                builder.Append($"{item.Key}={item.Value}");
+                builder.Append($"{item.Key.ToLowerInvariant()}={item.Value.ToString()?.ToLowerInvariant()}");
             }
 
             return builder.ToString();
