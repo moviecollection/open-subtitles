@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MovieCollection.OpenSubtitles;
 using MovieCollection.OpenSubtitles.Models;
@@ -27,6 +28,7 @@ namespace Demo
             _options = new OpenSubtitlesOptions
             {
                 ApiKey = "your-api-key",
+                ProductInformation = new ProductHeaderValue("your-app-name", "your-app-version"),
             };
 
             _service = new OpenSubtitlesService(_httpClient, _options);

@@ -4,7 +4,7 @@ Unofficial implementation of the Open Subtitles API.
 [![Nuget Version][nuget-shield]][nuget]
 [![Nuget Downloads][nuget-shield-dl]][nuget]
 
-> Note: This package is based on beta release of the [OpenSubtitles REST API][opensub-docs].
+> Note: This package is based on the beta release of the [OpenSubtitles REST API][opensub-docs].
 
 ## Installing
 You can install this package by entering the following command into your `Package Manager Console`:
@@ -20,16 +20,26 @@ First, define an instance of the `HttpClient` class if you haven't already.
 private static readonly HttpClient httpClient = new HttpClient();
 ```
 
-Then, you need to set your api key.
+Then, you need to set your api key and user-agent.
 ```csharp
+// using System.Net.Http.Headers;
 // using MovieCollection.OpenSubtitles;
 
 var options = new OpenSubtitlesOptions
 {
     ApiKey = "your-api-key",
+    ProductInformation = new ProductHeaderValue("your-app-name", "your-app-version"),
 };
 
-var service = new OpenSubtitlesService(httpClient, _options);
+var service = new OpenSubtitlesService(httpClient, options);
+```
+
+**Alternatively**, you can set the user-agent via `HttpClient`'s default request headers.
+```csharp
+// using System.Net.Http.Headers;
+
+var product = new ProductInfoHeaderValue("your-app-name", "your-app-version");
+httpClient.DefaultRequestHeaders.UserAgent.Add(product);
 ```
 
 ## Searching for subtitles
