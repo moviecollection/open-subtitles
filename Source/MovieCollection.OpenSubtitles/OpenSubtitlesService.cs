@@ -456,6 +456,13 @@
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
 
+            // Set the user agent if it was explicitly set via the options.
+            // This overrides the default request headers.
+            if (_options.ProductInformation != null)
+            {
+                request.Headers.UserAgent.Add(new ProductInfoHeaderValue(_options.ProductInformation));
+            }
+
             using var response = await _httpClient.SendAsync(request)
                 .ConfigureAwait(false);
 
