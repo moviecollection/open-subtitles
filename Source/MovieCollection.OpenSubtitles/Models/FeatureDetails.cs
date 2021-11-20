@@ -20,7 +20,7 @@
         public string? MovieName { get; set; }
 
         [JsonProperty("imdb_id")]
-        public string? ImdbId { get; set; }
+        public int? ImdbId { get; set; }
 
         [JsonProperty("tmdb_id")]
         public int? TmdbId { get; set; }
@@ -32,7 +32,7 @@
         public int? EpisodeNumber { get; set; }
 
         [JsonProperty("parent_imdb_id")]
-        public string? ParentImdbId { get; set; }
+        public int? ParentImdbId { get; set; }
 
         [JsonProperty("parent_title")]
         public string? ParentTitle { get; set; }

@@ -235,7 +235,7 @@ Start:
         {
             var search = new NewSubtitleSearch
             {
-                ImdbId = "tt11204094",
+                ImdbId = 11204094,
                 Languages = new[] { "en", "fa" },
             };
 

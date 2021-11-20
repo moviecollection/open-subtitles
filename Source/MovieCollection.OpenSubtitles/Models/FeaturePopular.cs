@@ -13,7 +13,7 @@
         public string? OriginalTitle { get; set; }
 
         [JsonProperty("imdb_id")]
-        public string? ImdbId { get; set; }
+        public int? ImdbId { get; set; }
 
         [JsonProperty("tmdb_id")]
         public int? TmdbId { get; set; }

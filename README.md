@@ -37,7 +37,7 @@ You can search for subtitles via `SearchSubtitles` method.
 ```csharp
 var search = new NewSubtitleSearch
 {
-    ImdbId = "tt11204094",
+    ImdbId = 11204094,
 };
 
 var result = await service.SearchSubtitlesAsync(search);

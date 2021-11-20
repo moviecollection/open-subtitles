@@ -34,13 +34,13 @@
         public int? EpisodeNumber { get; set; }
 
         [JsonProperty("imdb_id")]
-        public string? ImdbId { get; set; }
+        public int? ImdbId { get; set; }
 
         [JsonProperty("tmdb_id")]
         public int? TmdbId { get; set; }
 
         [JsonProperty("parent_imdb_id")]
-        public string? ParentImdbId { get; set; }
+        public int? ParentImdbId { get; set; }
 
         [JsonProperty("feature_id")]
         public int FeatureId { get; set; }

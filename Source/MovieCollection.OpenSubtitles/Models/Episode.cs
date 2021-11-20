@@ -14,6 +14,6 @@
         public int FeatureId { get; set; }
 
         [JsonProperty("feature_imdb_id")]
-        public string? FeatureImdbId { get; set; }
+        public int? FeatureImdbId { get; set; }
     }
 }

@@ -15,7 +15,7 @@
         /// <summary>
         /// Gets or sets the imdb id.
         /// </summary>
-        public string? ImdbId { get; set; }
+        public int? ImdbId { get; set; }
 
         /// <summary>
         /// Gets or sets the tmdb id.

@@ -228,7 +228,7 @@
                 parameters.Add("id", search.Id);
             }
 
-            if (!string.IsNullOrEmpty(search.ImdbId))
+            if (search.ImdbId.HasValue)
             {
                 parameters.Add("imdb_id", search.ImdbId);
             }
@@ -273,12 +273,12 @@
                 parameters.Add("parent_feature_id", search.ParentFeatureId);
             }
 
-            if (!string.IsNullOrEmpty(search.ParentImdbId))
+            if (search.ParentImdbId.HasValue)
             {
                 parameters.Add("parent_imdb_id", search.ParentImdbId);
             }
 
-            if (!string.IsNullOrEmpty(search.ParentTmdbId))
+            if (search.ParentTmdbId.HasValue)
             {
                 parameters.Add("parent_tmdb_id", search.ParentTmdbId);
             }
@@ -350,7 +350,7 @@
                 parameters.Add("feature_id", search.FeatureId);
             }
 
-            if (!string.IsNullOrEmpty(search.ImdbId))
+            if (search.ImdbId.HasValue)
             {
                 parameters.Add("imdb_id", search.ImdbId);
             }

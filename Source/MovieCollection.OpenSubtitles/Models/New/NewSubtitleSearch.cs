@@ -44,7 +44,7 @@
         /// <summary>
         /// Gets or sets the imdb id of the movie or episode.
         /// </summary>
-        public string? ImdbId { get; set; }
+        public int? ImdbId { get; set; }
 
         /// <summary>
         /// Gets or sets the language codes (e.g. en, fr).
@@ -101,7 +101,7 @@
         /// <remarks>
         /// For Tvshows.
         /// </remarks>
-        public string? ParentImdbId { get; set; }
+        public int? ParentImdbId { get; set; }
 
         /// <summary>
         /// Gets or sets the parent tmdb id.
@@ -109,7 +109,7 @@
         /// <remarks>
         /// For Tvshows.
         /// </remarks>
-        public string? ParentTmdbId { get; set; }
+        public int? ParentTmdbId { get; set; }
 
         /// <summary>
         /// Gets or sets the filename or search text.
