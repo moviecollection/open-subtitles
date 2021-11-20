@@ -412,19 +412,10 @@
         private async Task<T> DeleteAsync<T>(string requestUrl, string token)
         {
             string url = _options.ApiAddress + requestUrl;
-
             using var request = new HttpRequestMessage(HttpMethod.Delete, url);
 
-            request.Headers.Add("Api-Key", _options.ApiKey);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            using var response = await _httpClient.SendAsync(request)
+            return await SendRequestAsync<T>(request, token)
                 .ConfigureAwait(false);
-
-            string json = await response.Content.ReadAsStringAsync()
-                .ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<T>(json);
         }
 
         private async Task<T> PostJsonAsync<T>(string requestUrl, object obj, string? token = null)
@@ -432,25 +423,13 @@
             string url = _options.ApiAddress + requestUrl;
 
             using var request = new HttpRequestMessage(HttpMethod.Post, url);
-
-            request.Headers.Add("Api-Key", _options.ApiKey);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            if (!string.IsNullOrEmpty(token))
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
 
             string requestJson = JsonConvert.SerializeObject(obj);
             request.Content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            using var response = await _httpClient.SendAsync(request)
+            return await SendRequestAsync<T>(request, token)
                 .ConfigureAwait(false);
-
-            string json = await response.Content.ReadAsStringAsync()
-                .ConfigureAwait(false);
-
-            return JsonConvert.DeserializeObject<T>(json);
         }
 
         private async Task<T> GetJsonAsync<T>(string requestUrl, Dictionary<string, object>? parameters = null, string? token = null)
@@ -463,6 +442,13 @@
             }
 
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
+
+            return await SendRequestAsync<T>(request, token)
+                .ConfigureAwait(false);
+        }
+
+        private async Task<T> SendRequestAsync<T>(HttpRequestMessage request, string? token = null)
+        {
             request.Headers.Add("Api-Key", _options.ApiKey);
 
             if (!string.IsNullOrEmpty(token))
