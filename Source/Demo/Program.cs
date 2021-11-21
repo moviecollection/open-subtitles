@@ -163,16 +163,24 @@ Start:
             var result = await _service.LoginAsync(login);
 
             Console.WriteLine($"Status: {result.Status}");
-            Console.WriteLine($"Token: {result.Token}");
 
-            Console.WriteLine($"AllowedDownloads: {result.User.AllowedDownloads}");
-            Console.WriteLine($"Level: {result.User.Level}");
-            Console.WriteLine($"UserId: {result.User.UserId}");
-            Console.WriteLine($"ExtInstalled: {result.User.ExtInstalled}");
-            Console.WriteLine($"Vip: {result.User.Vip}");
+            if (result.Status == 200)
+            {
+                // Login was successful, save the token.
+                _token = result.Token;
 
-            // Save the token in memory.
-            _token = result.Token;
+                Console.WriteLine($"Token: {result.Token}");
+                Console.WriteLine($"AllowedDownloads: {result.User.AllowedDownloads}");
+                Console.WriteLine($"Level: {result.User.Level}");
+                Console.WriteLine($"UserId: {result.User.UserId}");
+                Console.WriteLine($"ExtInstalled: {result.User.ExtInstalled}");
+                Console.WriteLine($"Vip: {result.User.Vip}");
+            }
+            else
+            {
+                // Login failed, show the error message.
+                Console.WriteLine($"Message: {result.Message}");
+            }
         }
 
         private static async Task Logout()
