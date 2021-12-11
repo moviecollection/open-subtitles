@@ -57,6 +57,11 @@
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public Task<Result<UserDetails>> GetUserInformationAsync(string token)
         {
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                throw new ArgumentException($"'{nameof(token)}' cannot be null or whitespace.", nameof(token));
+            }
+
             return GetJsonAsync<Result<UserDetails>>("/api/v1/infos/user", token: token);
         }
 
@@ -76,6 +81,11 @@
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public Task<Login> LoginAsync(NewLogin login)
         {
+            if (login is null)
+            {
+                throw new ArgumentNullException(nameof(login));
+            }
+
             return PostJsonAsync<Login>("/api/v1/login", login);
         }
 
@@ -87,6 +97,11 @@
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public Task<Response> LogoutAsync(string token)
         {
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                throw new ArgumentException($"'{nameof(token)}' cannot be null or whitespace.", nameof(token));
+            }
+
             return DeleteAsync<Response>("/api/v1/logout", token);
         }
 
@@ -174,7 +189,7 @@
         /// <param name="download">An instance of the <see cref="NewDownload"/> class.</param>
         /// <param name="token">The user token created in the login endpoint.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public Task<Download> GetSubtitleForDownloadAsync(NewDownload download, string token)
+        public Task<Download> GetSubtitleForDownloadAsync(NewDownload download, string? token = null)
         {
             if (download is null)
             {
