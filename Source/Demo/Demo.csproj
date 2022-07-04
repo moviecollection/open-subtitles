@@ -3,6 +3,9 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <NoWarn>SYSLIB0014</NoWarn>
     </PropertyGroup>
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netstandard2.0;net451</TargetFrameworks>
+        <TargetFrameworks>net5.0;netstandard2.0;net48</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <LangVersion>8.0</LangVersion>
@@ -20,14 +20,14 @@
         <NoWarn>SA1633;SA1101;SA1309;CS1591</NoWarn>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net451'">
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net48'">
         <NoWarn>$(NoWarn);nullable</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
         <Version>1.0.0-preview.3</Version>
         <Authors>Peyman Mohammadi</Authors>
-        <Copyright>© 2021 Peyman Mohammadi</Copyright>
+        <Copyright>© 2022 Peyman Mohammadi</Copyright>
         <PackageId>MovieCollection.OpenSubtitles</PackageId>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>movie; series; api; wrapper; opensubtitles</PackageTags>
@@ -37,8 +37,7 @@
         <PackageProjectUrl>https://github.com/moviecollection/open-subtitles</PackageProjectUrl>
     </PropertyGroup>
 
-    <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
-        <Reference Include="System.Web" />
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
         <Reference Include="System.Net.Http" />
     </ItemGroup>
 
