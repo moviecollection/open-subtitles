@@ -14,6 +14,10 @@
         <DebugType>embedded</DebugType>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
     <PropertyGroup>
         <AnalysisLevel>latest</AnalysisLevel>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
@@ -25,7 +29,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>1.0.0-preview.3</Version>
         <Authors>Peyman Mohammadi</Authors>
         <Copyright>© 2022 Peyman Mohammadi</Copyright>
         <PackageId>MovieCollection.OpenSubtitles</PackageId>
