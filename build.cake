@@ -64,7 +64,7 @@ Task("Pack")
         NoRestore = true,
         OutputDirectory = artifacts,
         Configuration = configuration,
-        MSBuildSettings = new DotNetCoreMSBuildSettings()
+        MSBuildSettings = new DotNetMSBuildSettings()
             .WithProperty("PackageVersion", actualVersion)
     });
 
