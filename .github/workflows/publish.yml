@@ -23,4 +23,4 @@ jobs:
         script-path: build.cake
         target: Pack
         arguments: |
-          packageversion: "${{ github.event.release.tag_name }}"
+          packageversion: ${{ github.event.release.tag_name }}
