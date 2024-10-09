@@ -1,26 +1,27 @@
 ﻿# Open Subtitles API
-Unofficial implementation of the Open Subtitles API.
+Unofficial implementation of the Open Subtitles API for .NET
 
-[![Nuget Version][nuget-shield]][nuget]
-[![Nuget Downloads][nuget-shield-dl]][nuget]
+[![NuGet Version][nuget-shield]][nuget]
+[![NuGet Downloads][nuget-shield-dl]][nuget]
 
-> Note: This package is based on the beta release of the [OpenSubtitles REST API][opensub-docs].
+## Installation
+You can install this package via the `Package Manager Console` in Visual Studio.
 
-## Installing
-You can install this package by entering the following command into your `Package Manager Console`:
 ```powershell
 Install-Package MovieCollection.OpenSubtitles -PreRelease
 ```
 
 ## Configuration
-First, define an instance of the `HttpClient` class if you haven't already.
+Get or create a new static `HttpClient` instance if you don't have one already.
+
 ```csharp
-// HttpClient is intended to be instantiated once per application, rather than per-use.
-// See https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient
+// HttpClient lifecycle management best practices:
+// https://learn.microsoft.com/dotnet/fundamentals/networking/http/httpclient-guidelines#recommended-use
 private static readonly HttpClient httpClient = new HttpClient();
 ```
 
-Then, you need to set your api key and user-agent.
+You need to set your api key and user-agent then pass it to the service's constructor.
+
 ```csharp
 // using System.Net.Http.Headers;
 // using MovieCollection.OpenSubtitles;
@@ -34,7 +35,7 @@ var options = new OpenSubtitlesOptions
 var service = new OpenSubtitlesService(httpClient, options);
 ```
 
-**Alternatively**, you can set the user-agent via `HttpClient`'s default request headers.
+**Alternatively,** you can set the user-agent via `HttpClient`'s default request headers.
 ```csharp
 // using System.Net.Http.Headers;
 
@@ -42,8 +43,8 @@ var product = new ProductInfoHeaderValue("your-app-name", "your-app-version");
 httpClient.DefaultRequestHeaders.UserAgent.Add(product);
 ```
 
-## Searching for subtitles
-You can search for subtitles via `SearchSubtitles` method.
+## Search for Subtitles
+You can search for subtitles via the `SearchSubtitles` method.
 ```csharp
 var search = new NewSubtitleSearch
 {
@@ -88,17 +89,16 @@ var search = new NewSubtitleSearch
 };
 ```
 
-Please check out the demo project for more examples.
+Please see the demo project for more examples.
 
 ## Notes
-- Thanks to [Open Subtitles][opensub] for providing free API services. 
-- Please read Open Subtitles [terms of use][opensub-terms] before using their API.
+- Please read [Open Subtitles][opensub]'s [terms of use][opensub-terms] before using their their services.
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
 [nuget]: https://www.nuget.org/packages/MovieCollection.OpenSubtitles
-[nuget-shield]: https://img.shields.io/nuget/v/MovieCollection.OpenSubtitles.svg?label=Release
+[nuget-shield]: https://img.shields.io/nuget/v/MovieCollection.OpenSubtitles.svg?label=NuGet
 [nuget-shield-dl]: https://img.shields.io/nuget/dt/MovieCollection.OpenSubtitles?label=Downloads&color=red
 
 [opensub]: https://www.opensubtitles.com
