@@ -1,7 +1,7 @@
 var target = Argument("target", "Test");
 var configuration = Argument("configuration", "Release");
 
-var version = Argument("packageversion", "");
+var version = Argument("package-version", "");
 
 var solution = "./Source/MovieCollection.OpenSubtitles.sln";
 var artifacts = "./.artifacts";
@@ -60,12 +60,11 @@ Task("Pack")
 
     DotNetPack(solution, new DotNetPackSettings
     {
-        NoBuild = true,
         NoRestore = true,
         OutputDirectory = artifacts,
         Configuration = configuration,
         MSBuildSettings = new DotNetMSBuildSettings()
-            .WithProperty("PackageVersion", actualVersion)
+            .WithProperty("Version", actualVersion)
     });
 
     var files = GetFiles($"{artifacts}/*.nupkg");
