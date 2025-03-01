@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run the Cake script
-      uses: cake-build/cake-action@v2
+      uses: cake-build/cake-action@v3
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       with:
