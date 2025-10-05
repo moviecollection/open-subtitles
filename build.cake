@@ -3,7 +3,7 @@ var configuration = Argument("configuration", "Release");
 
 var version = Argument("package-version", "");
 
-var solution = "./Source/MovieCollection.OpenSubtitles.sln";
+var solution = "./Source/MovieCollection.OpenSubtitles.slnx";
 var artifacts = "./.artifacts";
 
 Task("Clean")
@@ -67,13 +67,18 @@ Task("Pack")
             .WithProperty("Version", actualVersion)
     });
 
-    var files = GetFiles($"{artifacts}/*.nupkg");
-
-    context.NuGetPush(files, new NuGetPushSettings
+    var pushSettings = new DotNetNuGetPushSettings
     {
         ApiKey = apiKey,
         Source = "https://api.nuget.org/v3/index.json",
-    });
+    };
+
+    var files = GetFiles($"{artifacts}/*.nupkg");
+
+    foreach (var file in files)
+    {
+        context.DotNetNuGetPush(file, pushSettings);
+    }
 });
 
 RunTarget(target);

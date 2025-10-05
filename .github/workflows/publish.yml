@@ -10,15 +10,22 @@ env:
 
 jobs:
   publish:
+    permissions:
+     id-token: write
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v5
+    - name: NuGet login
+      uses: NuGet/login@v1
+      id: login
+      with:
+       user: ${{ secrets.NUGET_USER }}
     - name: Run the Cake script
       uses: cake-build/cake-action@v3
       env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
       with:
         script-path: build.cake
         target: Pack
