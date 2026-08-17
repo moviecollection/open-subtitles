@@ -35,7 +35,8 @@
 
     <PropertyGroup>
         <Authors>Peyman Mohammadi</Authors>
-        <Copyright>© 2022 Peyman Mohammadi</Copyright>
+        <PackageIcon>icon.png</PackageIcon>
+        <Copyright>© 2026 Peyman Mohammadi</Copyright>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageId>MovieCollection.OpenSubtitles</PackageId>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -48,6 +49,7 @@
 
     <ItemGroup>
         <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+        <None Include="..\..\Assets\icon.png" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
