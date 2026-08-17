@@ -3,7 +3,7 @@ var configuration = Argument("configuration", "Release");
 
 var version = Argument("package-version", "");
 
-var solution = "./Source/MovieCollection.OpenSubtitles.slnx";
+var source = "./Source";
 var artifacts = "./.artifacts";
 
 Task("Clean")
@@ -17,9 +17,10 @@ Task("Build")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetBuild(solution, new DotNetBuildSettings
+    DotNetBuild("MovieCollection.OpenSubtitles.slnx", new DotNetBuildSettings
     {
         NoIncremental = true,
+        WorkingDirectory = source,
         Configuration = configuration,
     });
 });
@@ -28,11 +29,17 @@ Task("Test")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    DotNetTest(solution, new DotNetTestSettings
+    var projects = GetFiles("./Source/**/*{Tests}.csproj");
+
+    foreach (var project in projects)
     {
-        NoBuild = true,
-        Configuration = configuration,
-    });
+        DotNetTest(project.FullPath, new DotNetTestSettings
+        {
+            NoBuild = true,
+            WorkingDirectory = source,
+            Configuration = configuration,
+        });
+    }
 });
 
 Task("Pack")
@@ -58,9 +65,10 @@ Task("Pack")
         actualVersion = version.Substring(1);
     }
 
-    DotNetPack(solution, new DotNetPackSettings
+    DotNetPack("MovieCollection.OpenSubtitles.slnx", new DotNetPackSettings
     {
         NoRestore = true,
+        WorkingDirectory = source,
         OutputDirectory = artifacts,
         Configuration = configuration,
         MSBuildSettings = new DotNetMSBuildSettings()

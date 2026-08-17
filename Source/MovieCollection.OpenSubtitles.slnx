@@ -3,7 +3,9 @@
     <File Path="../LICENSE" />
     <File Path="../README.md" />
     <File Path=".editorconfig" />
+    <File Path="global.json" />
   </Folder>
   <Project Path="Demo/Demo.csproj" />
+  <Project Path="MovieCollection.OpenSubtitles.Tests/MovieCollection.OpenSubtitles.Tests.csproj" Id="10b71c14-c843-459f-a3fb-e1f79f4fc29c" />
   <Project Path="MovieCollection.OpenSubtitles/MovieCollection.OpenSubtitles.csproj" />
 </Solution>
